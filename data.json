@@ -14,5 +14,21 @@
         "pin": 4321,
         "accountNo": "@un7n08",
         "balance": 100
+    },
+    {
+        "name": "Eslavath Chakravarthi",
+        "age": 22,
+        "email": "chakravarthi@gmail.com",
+        "pin": 7654,
+        "accountNo": "9R5A5E$",
+        "balance": 0
+    },
+    {
+        "name": "Bhanu",
+        "age": 23,
+        "email": "bhanu@gmail.com",
+        "pin": 1233,
+        "accountNo": "W#c240S",
+        "balance": 0
     }
 ]

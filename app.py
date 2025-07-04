@@ -10,7 +10,7 @@ st.title("🏦 Bank Management System")
 if "page" not in st.session_state:
     st.session_state.page = "Create Account"
 
-# Sidebar Buttons (look like navbar buttons)
+# Sidebar as navigation
 st.sidebar.title("🔗 Operations")
 if st.sidebar.button("➕ Create Account"):
     st.session_state.page = "Create Account"
@@ -42,7 +42,13 @@ if st.session_state.page == "Create Account":
             result = bank.create_account(name, age, email, int(pin))
             if "success" in result:
                 st.success(result["success"])
-                st.json(result["account"])
+                user = result["account"]
+                st.info("Please note your account number for future access.")
+                st.write(f"**Name:** {user['name']}")
+                st.write(f"**Age:** {user['age']}")
+                st.write(f"**Email:** {user['email']}")
+                st.write(f"**Account Number:** {user['accountNo']}")
+                st.write(f"**Balance:** ₹{user['balance']}")
             else:
                 st.error(result["error"])
         else:
@@ -89,7 +95,12 @@ elif st.session_state.page == "View Details":
         if "error" in result:
             st.error(result["error"])
         else:
-            st.json(result)
+            st.success("Account Details Retrieved Successfully")
+            st.write(f"**Name:** {result['name']}")
+            st.write(f"**Age:** {result['age']}")
+            st.write(f"**Email:** {result['email']}")
+            st.write(f"**Account Number:** {result['accountNo']}")
+            st.write(f"**Balance:** ₹{result['balance']}")
 
 # ✅ 5. Update Details
 elif st.session_state.page == "Update Details":
@@ -104,7 +115,11 @@ elif st.session_state.page == "Update Details":
         result = bank.update_details(acc_no, int(pin), name or None, email or None, new_pin or None)
         if "success" in result:
             st.success(result["success"])
-            st.json(result["user"])
+            updated = result["user"]
+            st.write(f"**Name:** {updated['name']}")
+            st.write(f"**Email:** {updated['email']}")
+            st.write(f"**Account Number:** {updated['accountNo']}")
+            st.write(f"**Balance:** ₹{updated['balance']}")
         else:
             st.error(result["error"])
 
